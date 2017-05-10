@@ -1,5 +1,8 @@
 package com.entity;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("StoreDTO")
 public class StoreDTO {
 	
 	private String sid;

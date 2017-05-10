@@ -18,7 +18,6 @@ public class MainController {
 	
 	@Autowired
 	private StoreService service;
-
 	
 	@RequestMapping("LikeatMainController")
 	public ModelAndView likeatMain (String curPage) {

@@ -1,5 +1,8 @@
 package com.entity;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SreplyDTO")
 public class SreplyDTO {
 /*
 	SID VARCHAR2(5 BYTE) not null -- store 의 foregine 키로 가져오기 

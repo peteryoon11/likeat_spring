@@ -1,5 +1,8 @@
 package com.entity;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("MemberDTO")
 public class MemberDTO {
 	private String username;
 	private String userid;
