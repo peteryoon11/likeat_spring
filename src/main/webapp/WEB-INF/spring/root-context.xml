@@ -37,6 +37,6 @@
 		<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
 	
-	<mvc:resources location="/resources/bootstrap/" mapping="/bootstrap/**"/>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" id="requestMappingHandlerMapping"/>
 	
 </beans>
