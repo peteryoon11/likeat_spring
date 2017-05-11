@@ -17,12 +17,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
 	rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
 
 <!-- jQuery -->
-<script src="startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
+<script src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
+<script src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
 </body>

@@ -5,12 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Bootstrap Core CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
 	rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,9 +29,9 @@
  
  
 	<!-- jQuery -->
-	<script src="startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
+	<script src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
-		src="startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
+		src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
 </body>

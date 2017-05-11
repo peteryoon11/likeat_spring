@@ -19,7 +19,7 @@ public class MainController {
 	@Autowired
 	private StoreService service;
 	
-	@RequestMapping("LikeatMainController")
+	@RequestMapping("/LikeatMainController")
 	public ModelAndView likeatMain (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -39,10 +39,6 @@ public class MainController {
 			List<StoreDTO> topList = service.selectTop(mapperParam);
 			List<StoreDTO> newList = service.selectNew(mapperParam);
 			
-//			request.setAttribute("pageDTO", pageDTO);
-//			request.setAttribute("topList", topList);
-//			request.setAttribute("newList", newList);
-			
 			mav.addObject("pageDTO", pageDTO);
 			mav.addObject("topList", topList);
 			mav.addObject("newList", newList);
@@ -52,10 +48,7 @@ public class MainController {
 		} catch (LikeatException e) {
 			e.printStackTrace();
 			target = "error";
-//			request.setAttribute("errorMsg", "목록 불러오기에 실패했어요 :-( ");
-//			request.setAttribute("linkMsg", "메인 다시 둘러보기!");
-//			request.setAttribute("link", "LikeatMainController");
-
+			
 			mav.addObject("errorMsg", "목록 불러오기에 실패했어요 :-( ");
 			mav.addObject("linkMsg", "메인 다시 둘러보기!");
 			mav.addObject("link", "LikeatMainController");
@@ -64,7 +57,6 @@ public class MainController {
 		return mav;
 	}//likeatMain()
 
-	
 	
 	@RequestMapping("CategoryCController")
 	public ModelAndView categoryC () {

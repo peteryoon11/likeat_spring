@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dao.StoreDAO;
 import com.entity.PageDTO;
 import com.entity.StoreDTO;
 import com.exception.LikeatException;
 
+@Service
 public class StoreService {
 	
 	@Autowired
@@ -51,6 +53,7 @@ public class StoreService {
 		try{
 //			list = session.selectList(namespace + "selectTop", mapperParam);
 			list = dao.selectTop(mapperParam);
+			System.out.println("StoreService =========> " + list);
 		} catch(Exception e) {	
 			e.printStackTrace();
 			throw new LikeatException("TOP 목록 불러오기 실패!!!!!");

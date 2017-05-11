@@ -6,12 +6,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
+	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
 	rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

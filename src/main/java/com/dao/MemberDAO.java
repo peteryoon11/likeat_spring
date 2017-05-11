@@ -4,10 +4,11 @@ import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.entity.MemberDTO;
 
-
+@Repository
 public class MemberDAO {
 
 	String namespace = "com.acorn.MemberMapper.";
@@ -27,6 +28,6 @@ public class MemberDAO {
 		return template.selectOne(namespace + "login", loginfo);
 	}
 	
-	public MemberDTO user
+//	public MemberDTO user
 
 }

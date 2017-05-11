@@ -6,9 +6,11 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.entity.StoreDTO;
 
+@Repository
 public class StoreDAO {
 	
 	String namespace = "com.acorn.StoreMapper.";
@@ -21,6 +23,7 @@ public class StoreDAO {
 	}
 	
 	public List<StoreDTO> selectTop(HashMap<String, String> mapperParam) {
+		System.out.println("StoreDAO =============> ");
 		return template.selectList(namespace + "selectTop", mapperParam);
 	}
 	
