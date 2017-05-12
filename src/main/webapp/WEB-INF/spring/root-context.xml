@@ -37,6 +37,5 @@
 		<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
 	
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" id="requestMappingHandlerMapping"/>
 	
 </beans>
