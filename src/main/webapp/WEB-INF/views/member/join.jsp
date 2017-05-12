@@ -18,12 +18,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
+	href="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
+	href="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css"
 	rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -228,8 +228,8 @@ $(document).ready(function() {
 
 <!-- 	<script type="text/javascript" src="assets/js/bootstrap.js"></script> -->
 		<!-- jQuery -->
-	<script src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
+	<script src="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
+	<script src="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
 </body>

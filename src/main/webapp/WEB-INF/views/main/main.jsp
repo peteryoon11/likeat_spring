@@ -146,7 +146,7 @@ background: #428bca;
 	    var easeEffect = 'easeInQuint';
 	     
 	    // 1. 스크롤 이벤트 발생
-	    $(window).scroll(function(){ // ① 스크롤 이벤트 최초 발생
+	    $(window).scroll(function(){ 
 	         
 	        var currentScrollTop = $(window).scrollTop();
 	         
@@ -154,8 +154,6 @@ background: #428bca;
 	            =================   다운 스크롤인 상태  ================
 	        */
 	        if( currentScrollTop - lastScrollTop > 0 ){
-	            // down-scroll : 현재 게시글 다음의 글을 불러온다.
-	            console.log("down-scroll");
 	             
 	            // 2. 현재 스크롤의 top 좌표가  > (게시글을 불러온 화면 height - 윈도우창의 height) 되는 순간
 	            if ($(window).scrollTop() == ($(document).height() - $(window).height()) ){ //② 현재스크롤의 위치가 화면의 보이는 위치보다 크다면
@@ -198,9 +196,6 @@ background: #428bca;
 //	            lastScrollTop = currentScrollTop;
 	        }// 다운스크롤인 상태
 	         
-	        /* 
-	            =================   업 스크롤인 상태(미포)   ================
-	        */
 		});// scroll event
 		
  

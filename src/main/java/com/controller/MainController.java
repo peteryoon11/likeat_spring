@@ -19,7 +19,7 @@ public class MainController {
 	@Autowired
 	private StoreService service;
 	
-	@RequestMapping("/LikeatMainController")
+	@RequestMapping()
 	public ModelAndView likeatMain (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -56,7 +56,7 @@ public class MainController {
 		mav.setViewName(target);
 		return mav;
 	}//likeatMain()
-
+	
 	
 	@RequestMapping("CategoryCController")
 	public ModelAndView categoryC () {
