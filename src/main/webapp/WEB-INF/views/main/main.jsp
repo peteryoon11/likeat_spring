@@ -155,7 +155,6 @@ background: #428bca;
 	        */
 	        if( currentScrollTop - lastScrollTop > 0 ){
 	            // down-scroll : 현재 게시글 다음의 글을 불러온다.
-	            console.log("down-scroll");
 	             
 	            // 2. 현재 스크롤의 top 좌표가  > (게시글을 불러온 화면 height - 윈도우창의 height) 되는 순간
 	            if ($(window).scrollTop() == ($(document).height() - $(window).height()) ){ //② 현재스크롤의 위치가 화면의 보이는 위치보다 크다면
@@ -165,7 +164,7 @@ background: #428bca;
 	                // 4. ajax를 이용하여 다음페이지의 게시물 데이터를 받아온다.
 	                $.ajax({
 	                    type : 'get',  // list를 요청하는 것이므로, get방식으로 보내도 될듯
-	                    url : 'main/infiniteScrollList.jsp',// 요청할 서버의 url
+	                    url : 'infiniteScrollList.jsp',// 요청할 서버의 url
 						data : {	
 							curPage:curPage
 	                    },

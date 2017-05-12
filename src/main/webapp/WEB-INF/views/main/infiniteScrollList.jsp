@@ -1,3 +1,4 @@
+<%@page import="com.service.StoreService"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="com.dao.StoreDAO"%>
 <%@page import="org.apache.ibatis.session.RowBounds"%>
@@ -11,34 +12,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-int curPage = Integer.parseInt(request.getParameter("curPage"));
+String curPage = request.getParameter("curPage");
 
-System.out.println("curPage========================>" + curPage);
+HashMap<String, String> mapperParam = new HashMap<>();
+mapperParam.put("curPage", curPage);
+mapperParam.put("main", "main");
 
 // SqlSession sqlSession = MySqlSessionFactory.openMySession();
-StoreDAO dao = new StoreDAO();
+//StoreDAO dao = new StoreDAO();
+
+StoreService service = new StoreService();
+PageDTO pageDTO = null;
 
 int cnt = 0;
-List<StoreDTO> list = null;
+//List<StoreDTO> list = null;
 
-PageDTO pageDTO = new PageDTO();
-
-int skip = (curPage - 1) * pageDTO.getPerPage();
 
 try{
-	
-//	list = sqlSession.selectList("com.acorn.StoreMapper.selectPage", null, new RowBounds(skip, pageDTO.getPerPage()));
-//	cnt = sqlSession.selectOne("com.acorn.StoreMapper.totRecord");
-
-	list = dao.selectPage(null, skip, pageDTO.getPerPage());
-	cnt = dao.totRecord(null);
-
-	pageDTO.setList(list);
-	pageDTO.setCurPage(curPage);
-	pageDTO.setTotRecord(cnt);
-	
+	pageDTO = service.selectPage(mapperParam);
 	System.out.println("list========================>" + pageDTO.getList());
-	
 	request.setAttribute("pageDTO", pageDTO);
 } catch(Exception e) {	
 	
