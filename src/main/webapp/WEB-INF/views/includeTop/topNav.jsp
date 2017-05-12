@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Bootstrap Core CSS -->
-<link href="resources/bootstrap/startbootstrap-creative-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/bootstrap/startbootstrap-creative-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <!-- Custom Fonts -->
 <link href="resources/bootstrap/startbootstrap-creative-gh-pages/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,10 @@
 <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
 <!-- Plugin CSS -->
-<link href="resources/bootstrap/startbootstrap-creative-gh-pages/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+<link href="resources/bootstrap/startbootstrap-creative-gh-pages/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 
 <!-- Theme CSS -->
-<link href="resources/bootstrap/startbootstrap-creative-gh-pages/css/creative.min.css" rel="stylesheet">
+<link href="resources/bootstrap/startbootstrap-creative-gh-pages/css/creative.min.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
 .dropdown:hover .dropdown-menu {

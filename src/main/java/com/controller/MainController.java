@@ -19,7 +19,7 @@ public class MainController {
 	@Autowired
 	private StoreService service;
 	
-	@RequestMapping("/LikeatMainController")
+	@RequestMapping("/")
 	public ModelAndView likeatMain (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -58,7 +58,7 @@ public class MainController {
 	}//likeatMain()
 
 	
-	@RequestMapping("CategoryCController")
+	@RequestMapping("/CategoryCController")
 	public ModelAndView categoryC () {
 		ModelAndView mav = new ModelAndView();
 		
@@ -98,7 +98,7 @@ public class MainController {
 	
 	
 	
-	@RequestMapping("CategoryFController")
+	@RequestMapping("/CategoryFController")
 	public ModelAndView categoryF () {
 		
 		ModelAndView mav = new ModelAndView();
@@ -134,7 +134,7 @@ public class MainController {
 	
 	
 	
-	@RequestMapping("CategoryKController")
+	@RequestMapping("/CategoryKController")
 	public ModelAndView categoryK () {
 		
 		ModelAndView mav = new ModelAndView();
@@ -169,7 +169,7 @@ public class MainController {
 	
 	
 	
-	@RequestMapping("RegionGangnamController")
+	@RequestMapping("/RegionGangnamController")
 	public ModelAndView regionGangnam (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -215,7 +215,7 @@ public class MainController {
 	}// regionGangnam()
 	
 	
-	@RequestMapping("RegionSongpaController")
+	@RequestMapping("/RegionSongpaController")
 	public ModelAndView regionSongpa (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -252,7 +252,7 @@ public class MainController {
 	}// regionSongpa()
 
 	
-	@RequestMapping("RegionYongsanController")
+	@RequestMapping("/RegionYongsanController")
 	public ModelAndView regionYongsan (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
