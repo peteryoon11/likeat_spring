@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.PageDTO;
@@ -19,7 +22,7 @@ public class MainController {
 	@Autowired
 	private StoreService service;
 	
-	@RequestMapping("/")
+	@RequestMapping(value = {"/", "LikeatMainController"})
 	public ModelAndView likeatMain (String curPage) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -57,6 +60,22 @@ public class MainController {
 		return mav;
 	}//likeatMain()
 
+	
+	@RequestMapping("/infiniteScrollList/{curPage}") // main.jsp에서 ajax내 url에 infiniteScrollList.jsp 수정해주기
+	public @ResponseBody PageDTO mainScroll(@PathVariable String curPage) {
+		HashMap<String, String> mapperParam = new HashMap<>();
+		mapperParam.put("curPage", curPage);
+		mapperParam.put("main", "main");
+		PageDTO pageDTO = null;
+		
+		try {
+			pageDTO = service.selectPage(mapperParam);
+		} catch (LikeatException e) {
+			e.printStackTrace();
+//			throw new LikeatException("무한스크롤로 페이지 목록 불러오기 실패!!!!!");
+		}
+		return pageDTO;
+	}
 	
 	@RequestMapping("/CategoryCController")
 	public ModelAndView categoryC () {
