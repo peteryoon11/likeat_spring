@@ -29,13 +29,10 @@ public class StoreService {
 		
 		try{
 			
-//			list = session.selectList(namespace + "selectPage", mapperParam, new RowBounds(skip, pageDTO.getPerPage()));
 			list = dao.selectPage(mapperParam, skip, pageDTO.getPerPage());
-
 			pageDTO.setList(list);
 			pageDTO.setCurPage(curPage);
 			pageDTO.setTotRecord(totRecord(mapperParam));
-			
 		} catch(Exception e) {	
 			e.printStackTrace();
 			throw new LikeatException("현재 페이지 목록 불러오기 실패!!!!!");

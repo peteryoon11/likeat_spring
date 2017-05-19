@@ -16,6 +16,10 @@ public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	public int useridCheck(String userid) {
+		return template.selectOne(namespace + "useridCheck", userid);
+	}
+	
 	public void join(MemberDTO dto) {
 		template.insert(namespace + "join", dto);
 	}

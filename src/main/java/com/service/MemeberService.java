@@ -16,7 +16,6 @@ public class MemeberService {
 	private MemberDAO dao;
 	
 	public void join(MemberDTO dto) throws LikeatException {
-
 		try{
 //			session.insert(namespace + "join", dto);
 			dao.join(dto);
@@ -30,6 +29,17 @@ public class MemeberService {
 //			session.close();
 		}		
 	}//join
+	
+	public int useridCheck(String userid) {
+		int result = 1;
+		try{
+			result = dao.useridCheck(userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+//			throw new LikeatException("회원가입실패!!!!!!!!!!!!!");
+		}
+		return result;
+	}
 
 	public void modifyMember(MemberDTO dto) throws LikeatException {
 		

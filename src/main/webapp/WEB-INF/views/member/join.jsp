@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%request.setCharacterEncoding("UTF-8"); %>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
-<!-- Website CSS style -->
-<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+Website CSS style
+<link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
 
 <!-- Website Font style -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -68,14 +69,13 @@ $(document).ready(function() {
 	
 	var idResult = '';
 	$("#userid").on("keyup", function() {
+		var useridcheck = $("#userid").val();
          $.ajax({
             type:"post",
-            url:"idValidationCheck.jsp",
+            url:"idDuplicationCheck/" + useridcheck,
             dataType:"text", 
-            data:{
-                userid:$("#userid").val()
-            },
             success:function(responseData, status, xhr) {
+            	console.log("id duplicatio check ==> " + responseData);
             	idResult = responseData;
             	$(".userid").text(responseData);
             },

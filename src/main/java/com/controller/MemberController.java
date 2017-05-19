@@ -5,7 +5,9 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +22,30 @@ public class MemberController {
 
 	@Autowired
 	private MemeberService service;
+	
+	
+	@RequestMapping("JoinFormController")
+	public String joinForm () {
+		return "join";
+	}
 
+	
+	@RequestMapping(value="/idDuplicationCheck/{userId}", produces="application/text; charset=utf8")
+	public @ResponseBody String idDuplicationCheck(@PathVariable String userId) {
+		System.out.println("idDuplicationCheck 실행");
+		int exist = 1;
+		String result = null;
+		exist = service.useridCheck(userId);
+		if(exist == 1) {
+			result = "존재하는 아이디입니다";
+		} else {
+			result = "";
+		}
+		System.out.println("result ==> " + result);
+		return result;
+	}
+	
+	
 	@RequestMapping("JoinController")
 	public ModelAndView join (MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
@@ -53,12 +78,6 @@ public class MemberController {
 		mav.setViewName(target);
 		return mav;
 	} // join()
-	
-	
-	@RequestMapping("JoinFormController")
-	public String joinForm () {
-		return "join";
-	}
 	
 	
 	@RequestMapping("LoginController")

@@ -61,13 +61,22 @@ public class MainController {
 	}//likeatMain()
 
 	
-	@RequestMapping("/infiniteScrollList/{curPage}") // main.jsp에서 ajax내 url에 infiniteScrollList.jsp 수정해주기
-	public @ResponseBody PageDTO mainScroll(@PathVariable String curPage) {
+	@RequestMapping("/infiniteScrollList/{where}/{curPage}")
+	public @ResponseBody PageDTO mainScroll(@PathVariable String where,@PathVariable String curPage) {
 		HashMap<String, String> mapperParam = new HashMap<>();
 		mapperParam.put("curPage", curPage);
-		mapperParam.put("main", "main");
-		PageDTO pageDTO = null;
+		if(where.equals("main")) {
+			mapperParam.put("main", "main");
+		} else if(where.equals("gangnam")) {
+			mapperParam.put("gangnam", "gangnam");
+		} else if(where.equals("songpa")) {
+			mapperParam.put("songpa", "songpa");
+		} else if(where.equals("yongsan")) {
+			mapperParam.put("yongsan", "yongsan");
+		}
 		
+		PageDTO pageDTO = null;
+		System.out.println("curPage =====> " + curPage);
 		try {
 			pageDTO = service.selectPage(mapperParam);
 		} catch (LikeatException e) {

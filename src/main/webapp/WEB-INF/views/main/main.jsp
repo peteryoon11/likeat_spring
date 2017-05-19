@@ -139,7 +139,6 @@ background: #428bca;
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
 	    var curPage = 2;
 
 	    var lastScrollTop = 0;
@@ -147,9 +146,9 @@ background: #428bca;
 	     
 	    // 1. 스크롤 이벤트 발생
 	    $(window).scroll(function(){ // ① 스크롤 이벤트 최초 발생
-	    	var addPage = '';
 	        var currentScrollTop = $(window).scrollTop();
-	         
+			var addPage = '';
+			var addInnerPage = '';
 	        if( currentScrollTop - lastScrollTop > 0 ){
 	             
 	            if ($(window).scrollTop() == ($(document).height() - $(window).height()) ){ //② 현재스크롤의 위치가 화면의 보이는 위치보다 크다면
@@ -157,45 +156,62 @@ background: #428bca;
 	                // 4. ajax를 이용하여 다음페이지의 게시물 데이터를 받아온다.
 	                $.ajax({
 	                	type : 'get', 
-//	                    dataType:"json", //??
-	                    url : 'infiniteScrollList/'+curPage,// 요청할 서버의 url
+	                    url : 'infiniteScrollList/main/'+curPage,// 요청할 서버의 url
 	                    success : function(pageDTO){
 	                        if(pageDTO != ""){
 	                            // 8. 이전까지 뿌려졌던 데이터를 비워주고, <th>헤더 바로 밑에 위에서 만든 str을  뿌려준다.
-	                            console.log("성공!! ============> " + pageDTO);
-	                            var s = pageDTO.list;
-	                            console.log('s ==> ' + s);
-
-/*	                            addPage = `
-	                                <section class="no-padding neweatList" id="portfolio">
-	                                <div class="container">
-	                                    <div class="row popup-gallery">
-	                        					<div class="col-lg-3 col-sm-6">
-	                        					    <a href="${s.imgSrc1}" class="portfolio-box">
-	                        					        <img src="${s.imgSrc1}" class="img-responsive" alt="" >
-	                        					        <div class="portfolio-box-caption">
-	                        					            <div class="portfolio-box-caption-content">
-	                        					                <div class="project-name">
-	                        					                    ${s.sname}
-	                        					                </div>
-	                        					                <div class="project-category text-faded">
-	                        					                    ${s.sid}
-	                        					                    <input type="hidden" id="curPage" name="curPage"  value="${pageDTO.curPage}">
-	                        					                </div>
-	                        					            </div>
-	                        					        </div>
-	                        					    </a>
-	                        					</div>
-	                         			</div>
-	                                </div>
-	                            </section>
-	                            `;
-*/	                            
-								$(".neweatList").last().after($(addPage));
+	                            console.log("성공!! ============> ");
+	                            $.each(pageDTO.list, function (idx, s) {
+									<c:choose>
+				                		<c:when test='${0 eq s.ratingCnt}'>
+											addInnerPage += '<div class="col-lg-3 col-sm-6">'
+															+	'<a href=' + s.imgSrc1 + ' class="portfolio-box">'
+		        					        				+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
+		        					        				+		'<div class="portfolio-box-caption">'
+		        					            			+			'<div class="portfolio-box-caption-content">'
+		        					                		+				'<div class="project-name">'
+		        					                    	+ 					s.sname
+		        					                		+ 				'</div>'
+		        					                		+				'<div class="project-category text-faded">'
+															+ 					'아직 별점이 없습니다'							
+		        					                		+ 				'</div>'
+		        					            			+			'</div>'
+		        					            			+		"</div>"
+		        					            			+	"</a>"
+		        					            			+"</div>";
+										</c:when>
+									<c:otherwise>
+			                                addInnerPage += '<div class="col-lg-3 col-sm-6">'
+				        					   				+	'<a href=' + s.imgSrc1 + ' class="portfolio-box">'
+				        					        		+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
+				        					        		+		'<div class="portfolio-box-caption">'
+				        					            	+			'<div class="portfolio-box-caption-content">'
+				        					                +				'<div class="project-name">'
+				        					                + 					s.sname
+				        					                + 				"</div>"
+				        					                +				'<div class="project-category text-faded">'
+				        					                + 					(s.rating / s.ratingCnt).toFixed(1)
+				        					                + 				'</div>'
+				        					            	+			'</div>'
+				        					            	+		"</div>"
+				        					            	+	"</a>"
+				        					            	+"</div>";
+									</c:otherwise>
+								</c:choose>	                            	
+	                            });
+									addPage = "<section class='no-padding neweatList' id='portfolio'>"
+												+ 	"<div class='container'>"
+												+ 		"<div class='row no-gutter popup-gallery'>"
+									            + 			addInnerPage 
+									            + 			"<input type='hidden' id='curPage' name='curPage' value=" + pageDTO.curPage + "'>"
+									 			+ 		"</div>"
+									 			+ 	"</div>"
+												+ "</section>";
+								console.log(addInnerPage);
+	                            $(".neweatList").last().after(addPage);
 	                            console.log("현재페이지 ===============> " + curPage);
 	                            curPage++;
-	                        }// if : data!=null 
-	                        else{ 
+	                        } else{ 
 	                            alert("더 불러올 데이터가 없습니다.");
 	                        }// else
 	                    },// success
@@ -264,7 +280,6 @@ background: #428bca;
 							 								<fmt:formatNumber value="${rate }" pattern=".0"/>
 														</c:otherwise>
 													</c:choose>
-													${topDTO.sid}
 						          	 			</div>
 							           		</div>
 						       			</div>
@@ -301,7 +316,6 @@ background: #428bca;
 							 										<fmt:formatNumber value="${rate }" pattern=".0"/>
 																</c:otherwise>
 															</c:choose>
-															${topDTO.sid}
 							          	 				</div>
 								           			</div>
 							       				</div>
@@ -369,7 +383,6 @@ background: #428bca;
 							 								<fmt:formatNumber value="${rate }" pattern=".0"/>
 														</c:otherwise>
 													</c:choose>
-													${newDTO.sid}
 						          	 			</div>
 							           		</div>
 						       			</div>
@@ -406,7 +419,6 @@ background: #428bca;
 							 										<fmt:formatNumber value="${rate }" pattern=".0"/>
 																</c:otherwise>
 															</c:choose>
-															${newDTO.sid}
 							          	 				</div>
 								           			</div>
 							       				</div>
@@ -437,30 +449,39 @@ background: #428bca;
 		</div>
 		<!-- /.row -->
 	</div>
-	<!-- NEWeat! container -->
+	<!-- All the list! container -->
     <section class="no-padding neweatList" id="portfolio">
-        <div class="container">
-            <div class="row popup-gallery">
+         <div class="container">
+            <div class="row no-gutter popup-gallery">
 				<c:forEach items="${pageDTO.list}" var="s" varStatus="i">
-					<div class="col-lg-3 col-sm-6">
-					    <a href="DetailPageController?sid=${s.sid}" class="portfolio-box">
-					        <img src="${s.imgSrc1}" class="img-responsive" alt="" >
-					        <div class="portfolio-box-caption">
-					            <div class="portfolio-box-caption-content">
-					                <div class="project-name">
-					                    ${s.sname}
-					                </div>
-					                <div class="project-category text-faded">
-					                    ${s.sid}
-					                    <input type="hidden" id="curPage" name="curPage"  value="${pageDTO.curPage}">
-					                </div>
-					            </div>
-					        </div>
-					    </a>
-					</div>
+	                <div class="col-lg-3 col-sm-6">
+	                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
+	                        <img src="${s.imgSrc1}" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                            	<div class="project-name">
+	                                    ${s.sname}
+	                                    <input type="hidden" id="curPage" name="curPage"  value="${pageDTO.curPage}">
+	                                </div>
+	                                <div class="project-category text-faded">
+	                                  	<c:choose>
+											<c:when test="${0 eq s.ratingCnt}">
+												"아직 별점이 없습니다"							
+											</c:when>
+											<c:otherwise>
+								 			<c:set value="${s.rating / s.ratingCnt}" var="rate"/>
+							 					<fmt:formatNumber value="${rate }" pattern=".0"/>
+											</c:otherwise>
+										</c:choose>
+	                                </div>
+
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
             	</c:forEach>
-            </div>
-        </div>
+        	 </div>
+        </div>	 
     </section>
     <br/>
 
