@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.MemberDTO;
 import com.exception.LikeatException;
@@ -30,6 +31,7 @@ public class MemberController {
 	}
 
 	
+//	@RequestMapping("/idDuplicationCheck/{userId}")
 	@RequestMapping(value="/idDuplicationCheck/{userId}", produces="application/text; charset=utf8")
 	public @ResponseBody String idDuplicationCheck(@PathVariable String userId) {
 		System.out.println("idDuplicationCheck 실행");
@@ -47,27 +49,15 @@ public class MemberController {
 	
 	
 	@RequestMapping("JoinController")
-	public ModelAndView join (MemberDTO dto) {
+	public ModelAndView join (@ModelAttribute MemberDTO dto, RedirectAttributes reAttr) {
 		ModelAndView mav = new ModelAndView();
 
-/*		
-		request.setCharacterEncoding("utf-8");
- 		String username = request.getParameter("username");
-		String userid = request.getParameter("userid");
-		String userpw = request.getParameter("userpw");
-		String email = request.getParameter("email");
-		String phone1 = request.getParameter("phone1");
-		String phone2 = request.getParameter("phone2");
-		String phone3 = request.getParameter("phone3");
-		
-		MemberDTO dto = new MemberDTO(username, userid, userpw, email, phone1, phone2, phone3);
-*/		
 		String target = "";
 		
 		try {
 			service.join(dto);
 			target = "redirect:LikeatMainController";
-			mav.addObject("SuccessAlert", "가입을 축하드립니다");
+			reAttr.addFlashAttribute("SuccessAlert", "가입을 축하드립니다");
 		} catch (LikeatException e) {
 			e.printStackTrace();
 			target = "error";
@@ -81,7 +71,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("LoginController")
-	public ModelAndView login (String userid, String userpw) {
+	public ModelAndView login (String userid, String userpw, RedirectAttributes reAttr) {
 		ModelAndView mav = new ModelAndView();
 		
 		HashMap<String, String> loginfo = new HashMap<>();
@@ -93,23 +83,16 @@ public class MemberController {
 		try {
 			MemberDTO dto = service.login(loginfo);
 			if(dto != null) {
-//				HttpSession session = request.getSession();
-//				session.setAttribute("loginfo", dto);
-//				request.setAttribute("SuccessAlert", dto.getUsername() + "님 어서오세요");
-				mav.addObject("loginfo", dto);
-				mav.addObject("SuccessAlert", dto.getUsername() + "님 어서오세요");
+				reAttr.addFlashAttribute("loginfo", dto);
+				reAttr.addFlashAttribute("SuccessAlert", dto.getUsername() + "님 어서오세요");
 				target = "redirect:LikeatMainController";
 			} else {
-//				request.setAttribute("loginFail", "아이디나 비밀번호를 다시 확인해주세요");
-				mav.addObject("loginFail", "아이디나 비밀번호를 다시 확인해주세요");
+				reAttr.addFlashAttribute("loginFail", "아이디나 비밀번호를 다시 확인해주세요");
 				target = "redirect:LoginFormController";
 			}
 		} catch (LikeatException e) {
 			e.printStackTrace();
 			target = "error";
-//			request.setAttribute("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
-//			request.setAttribute("linkMsg", "로그인 재시도!");
-//			request.setAttribute("link", "LoginFormController");
 			mav.addObject("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
 			mav.addObject("linkMsg", "로그인 재시도!");
 			mav.addObject("link", "LoginFormController");

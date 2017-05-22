@@ -3,10 +3,14 @@ package com.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,12 +27,10 @@ public class MainController {
 	private StoreService service;
 	
 	@RequestMapping(value = {"/", "LikeatMainController"})
-	public ModelAndView likeatMain (String curPage) {
+	public ModelAndView likeatMain () {
 		ModelAndView mav = new ModelAndView();
 		
-		if(curPage == null) {
-			curPage = "1";
-		}		
+		String curPage = "1";
 		
 		HashMap<String, String> mapperParam = new HashMap<>();
 		mapperParam.put("curPage", curPage);

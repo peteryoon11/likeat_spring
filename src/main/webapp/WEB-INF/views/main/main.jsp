@@ -9,6 +9,13 @@
 <link href="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/4-col-portfolio.css" rel="stylesheet">
 
 <style type="text/css">
+
+#imgMain {
+ 	margin: 3px !important;
+	padding:3px !important;
+}
+ 
+
 .thumbnail-wrap {
   width: 100%;
 }
@@ -183,7 +190,7 @@ background: #428bca;
 									<c:otherwise>
 			                                addInnerPage += '<div class="col-lg-3 col-sm-6">'
 				        					   				+	'<a href=' + s.imgSrc1 + ' class="portfolio-box">'
-				        					        		+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
+				        					        		+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" id="imgMain" style="height:200px !important;width: 290px !important;">'
 				        					        		+		'<div class="portfolio-box-caption">'
 				        					            	+			'<div class="portfolio-box-caption-content">'
 				        					                +				'<div class="project-name">'
@@ -454,9 +461,9 @@ background: #428bca;
          <div class="container">
             <div class="row no-gutter popup-gallery">
 				<c:forEach items="${pageDTO.list}" var="s" varStatus="i">
-	                <div class="col-lg-3 col-sm-6">
+	                <div class="col-lg-3 col-sm-6" >
 	                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
-	                        <img src="${s.imgSrc1}" class="img-responsive" alt="">
+	                        <img src="${s.imgSrc1}" class="img-responsive" alt="" id="imgMain" style="height:200px !important;width: 290px !important;">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                            	<div class="project-name">
