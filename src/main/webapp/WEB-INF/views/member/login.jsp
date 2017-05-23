@@ -116,9 +116,6 @@ $(document).ready(function() {
 		</div>
 	</div>
 
-		<!-- jQuery -->
-	<script src="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script src="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
 </body>

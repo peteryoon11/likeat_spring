@@ -77,17 +77,6 @@ $(document).ready(function() {
 	        $("#useridCheck").text("");
 	    }
     });
-
-	
-	
-	// 비밀번호 클릭시 내용 삭제
-/* 	$("#userpw, #userpwReCheck").on("focus", function() {
-		$(this).parent().next().text("");	
-		if($(this).val().trim().length != 0) {
-			$(this).val("");
-		}
-	}); */
-	
 	
 	// 비밀번호 체크
      $("#userpw, #userpwReCheck").on("focusin", function() {

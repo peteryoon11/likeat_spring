@@ -50,6 +50,24 @@
 			}
  		});
 */		
+
+		$("#logoutBtn").on("click", function() {
+			
+			
+/* 			
+			 								<input type="hidden" name="username" value="${loginfo.username }">
+			 				
+									</form>
+			
+				 					<form action="LogoutController" method="post" id="logoutForm">
+			
+			
+				 					
+				 					
+			$("#logoutForm").submit();
+ */		});
+
+
 	});
 </script>
 <body>
@@ -100,7 +118,7 @@
 		
 		<ul class="nav navbar-nav navbar-right">
 			<c:choose>
-				<c:when test="${loginfo eq null}">
+				<c:when test="${loginfo.username eq null}">
 					<li>
 						<a href="JoinFormController">
 							<span class="glyphicon glyphicon-user"></span>
@@ -122,11 +140,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="LogoutController">
-							<span class="glyphicon glyphicon-log-out"></span> 
-							LOGOUT
+						<a href="LogoutController" id="logoutBtn">
+							<span class="glyphicon glyphicon-log-out"></span>
+							LOGOUT 
 						</a>
-					</li>
+ 					</li>
 				</c:otherwise>
 			</c:choose>
  		</ul>

@@ -2,8 +2,12 @@ package com.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,12 @@ public class MemberController {
 	@Autowired
 	private MemeberService service;
 	
+    @ModelAttribute()
+    public void beforeMemberController(HttpServletRequest req) {
+        HttpSession sess = req.getSession();
+        sess.setAttribute("loginfo", new MemberDTO());
+    }
+	
 	
 	@RequestMapping("JoinFormController")
 	public String joinForm () {
@@ -31,7 +41,6 @@ public class MemberController {
 	}
 
 	
-//	@RequestMapping("/idDuplicationCheck/{userId}")
 	@RequestMapping(value="/idDuplicationCheck/{userId}", produces="application/text; charset=utf8")
 	public @ResponseBody String idDuplicationCheck(@PathVariable String userId) {
 		System.out.println("idDuplicationCheck 실행");
@@ -71,19 +80,16 @@ public class MemberController {
 	
 	
 	@RequestMapping("LoginController")
-	public ModelAndView login (String userid, String userpw, RedirectAttributes reAttr) {
-		ModelAndView mav = new ModelAndView();
-		
-		HashMap<String, String> loginfo = new HashMap<>();
-		loginfo.put("userid", userid);
-		loginfo.put("userpw", userpw);
-		
+	public String login (MemberDTO dto, Model m, RedirectAttributes reAttr) {
 		String target = "";
+		HashMap<String, String> loginfo = new HashMap<>();
+		loginfo.put("userid", dto.getUserid());
+		loginfo.put("userpw", dto.getUserpw());
 		
 		try {
-			MemberDTO dto = service.login(loginfo);
+			dto = service.login(loginfo);
 			if(dto != null) {
-				reAttr.addFlashAttribute("loginfo", dto);
+				m.addAttribute("loginfo", dto);
 				reAttr.addFlashAttribute("SuccessAlert", dto.getUsername() + "님 어서오세요");
 				target = "redirect:LikeatMainController";
 			} else {
@@ -93,12 +99,11 @@ public class MemberController {
 		} catch (LikeatException e) {
 			e.printStackTrace();
 			target = "error";
-			mav.addObject("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
-			mav.addObject("linkMsg", "로그인 재시도!");
-			mav.addObject("link", "LoginFormController");
+			reAttr.addFlashAttribute("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
+			reAttr.addFlashAttribute("linkMsg", "로그인 재시도!");
+			reAttr.addFlashAttribute("link", "LoginFormController");
 		}
-		mav.setViewName(target);
-		return mav;
+		return target;
 	} // login()
 	
 	
@@ -112,21 +117,16 @@ public class MemberController {
 	
 	@RequestMapping("LogoutController")
 	public ModelAndView logout (@ModelAttribute("loginfo") MemberDTO dto, SessionStatus status) {
+		
 		ModelAndView mav = new ModelAndView();
 
-//		HttpSession session = request.getSession();
-//		MemberDTO dto = (MemberDTO) session.getAttribute("loginfo");
-		
 		String target = "";
 		
 		if(dto != null) {
-//			session.invalidate();
-//			request.setAttribute("SuccessAlert", dto.getUsername() + "님 다시 만나요 :-)");
 			status.setComplete();
 			mav.addObject("SuccessAlert", dto.getUsername() + "님 다시 만나요 :-)");
 			target = "redirect:LikeatMainController";
 		} else {
-//			request.setAttribute("loginFail", "로그인부터 시도해주세요 :-)");
 			mav.addObject("loginFail", "로그인부터 시도해주세요 :-)");
 			target = "redirect:LoginFormController";
 		}
@@ -140,15 +140,6 @@ public class MemberController {
 	public ModelAndView memberInfoModify (MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
 	
-/*		request.setCharacterEncoding("utf-8");
-		String username = request.getParameter("username");
-		String userid = request.getParameter("userid");
-		String userpw = request.getParameter("userpw");
-		String email = request.getParameter("email");
-		String phone1 = request.getParameter("phone1");
-		String phone2 = request.getParameter("phone2");
-		String phone3 = request.getParameter("phone3");
-*/		
 		String target = "";
 		
 		try {
