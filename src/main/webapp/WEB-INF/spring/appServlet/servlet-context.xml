@@ -15,5 +15,19 @@
  		<property name="prefix" value="/WEB-INF/views/"/>
  		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	<!-- 인터셉터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/MyPageController"/>
+			<mvc:mapping path="/MemberInfoModifyController"/>
+			<mvc:mapping path="/LogoutController"/>
+			<bean class="com.interceptor.MemberInterceptor" id="memberInterceptor"/>
+		</mvc:interceptor>
+<!-- 			<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" id="webContentInterceptor">
+ 				<property name="cacheControl" value="no-store"/>
+			</bean>
+ -->
+ 		</mvc:interceptors>
 		
 </beans>

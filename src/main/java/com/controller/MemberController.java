@@ -116,16 +116,19 @@ public class MemberController {
 	
 	
 	@RequestMapping("LogoutController")
-	public ModelAndView logout (@ModelAttribute("loginfo") MemberDTO dto, SessionStatus status) {
-		
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView logout (String userId, Model m, SessionStatus status) {
 
-		String target = "";
+		ModelAndView mav = new ModelAndView();
 		
+		String target = "";
+		System.out.println("userId ==> " + userId);
+		MemberDTO dto = service.userCheck(userId);
+		System.out.println("넘어온 dto ==> " + dto);
 		if(dto != null) {
-			status.setComplete();
 			mav.addObject("SuccessAlert", dto.getUsername() + "님 다시 만나요 :-)");
+//			target = "redirect:LikeatMainController";
 			target = "redirect:LikeatMainController";
+			status.setComplete();
 		} else {
 			mav.addObject("loginFail", "로그인부터 시도해주세요 :-)");
 			target = "redirect:LoginFormController";

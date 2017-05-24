@@ -75,5 +75,18 @@ public class MemeberService {
 		}
 		return dto;
 	}//login
+
+	
+	// 로그아웃 시 해당 사용자 맞는지 체크
+	public MemberDTO userCheck(String userid) {
+		MemberDTO dto = null;
+		
+		try {
+			dto = dao.userCheck(userid);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}//login
 	
 }

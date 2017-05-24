@@ -31,6 +31,10 @@ public class MemberDAO {
 	public MemberDTO login(HashMap<String, String> loginfo) {
 		return template.selectOne(namespace + "login", loginfo);
 	}
+
+	public MemberDTO userCheck(String userid) {
+		return template.selectOne(namespace + "userCheck", userid);
+	}
 	
 //	public MemberDTO user
 

@@ -51,21 +51,18 @@
  		});
 */		
 
-		$("#logoutBtn").on("click", function() {
-			
-			
-/* 			
-			 								<input type="hidden" name="username" value="${loginfo.username }">
-			 				
-									</form>
-			
-				 					<form action="LogoutController" method="post" id="logoutForm">
-			
-			
-				 					
-				 					
-			$("#logoutForm").submit();
- */		});
+ 		$("#logoutBtn").on("click", function() {
+			var userid = ${loginfo.userid};
+//			$(this).attr("href", "LogoutController/"+userid);
+			alert(userid);
+			var $form = $('<form></form>'); 
+			$form.attr('action', 'LogoutController'); 
+			$form.attr('method', 'post'); 
+			$form.appendTo('body'); 
+			var idx = $('<input name="userid" type="hidden" value="' + userid + '">'); 
+			$form.append(idx); 
+			$form.submit();
+		}); 
 
 
 	});

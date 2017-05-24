@@ -3,10 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-
-<!-- Website CSS style -->
-<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<link rel="stylesheet" type="text/css" href="resources/bootstrap/startbootstrap-4-col-portfolio-gh-pages/css/bootstrap.css">
 
 <!-- Website Font style -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
