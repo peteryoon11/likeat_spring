@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 import com.entity.MemberDTO;
 import com.exception.LikeatException;
@@ -23,7 +24,7 @@ import com.service.MemeberService;
 
 @Controller
 @SessionAttributes("loginfo")
-public class MemberController {
+public class MemberController{
 
 	@Autowired
 	private MemeberService service;
@@ -79,7 +80,16 @@ public class MemberController {
 	} // join()
 	
 	
-	@RequestMapping("LoginController")
+	
+	@RequestMapping("LoginFormController")
+	public String loginForm (Model m) {
+		System.out.println("loginForm의 model ==> " + m);
+		return "login";
+	}//loginForm
+	
+	
+	
+/*	@RequestMapping("LoginController")
 	public String login (MemberDTO dto, Model m, RedirectAttributes reAttr) {
 		String target = "";
 		HashMap<String, String> loginfo = new HashMap<>();
@@ -104,15 +114,32 @@ public class MemberController {
 			reAttr.addFlashAttribute("link", "LoginFormController");
 		}
 		return target;
-	} // login()
-	
-	
-	
-	@RequestMapping("LoginFormController")
-	public String loginForm () {
-		return "login";
-	}//loginForm
-	
+	}*/ // login()
+	@RequestMapping("LoginController")
+	public String login (@ModelAttribute("loginfo")MemberDTO dto, RedirectAttributes reAttr) {
+		String target = "";
+		HashMap<String, String> loginfo = new HashMap<>();
+		loginfo.put("userid", dto.getUserid());
+		loginfo.put("userpw", dto.getUserpw());
+		
+		try {
+			dto = service.login(loginfo);
+			if(dto != null) {
+				reAttr.addFlashAttribute("SuccessAlert", dto.getUsername() + "님 어서오세요");
+				target = "redirect:LikeatMainController";
+			} else {
+				reAttr.addFlashAttribute("loginFail", "아이디나 비밀번호를 다시 확인해주세요");
+				target = "redirect:LoginFormController";
+			}
+		} catch (LikeatException e) {
+			e.printStackTrace();
+			target = "error";
+			reAttr.addFlashAttribute("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
+			reAttr.addFlashAttribute("linkMsg", "로그인 재시도!");
+			reAttr.addFlashAttribute("link", "LoginFormController");
+		}
+		return target;
+	}
 	
 	
 	@RequestMapping("LogoutController")
@@ -142,9 +169,8 @@ public class MemberController {
 	@RequestMapping("MemberInfoModifyController")
 	public ModelAndView memberInfoModify (MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
-	
 		String target = "";
-		
+		String str = "";
 		try {
 			service.modifyMember(dto);
 			target = "redirect:MyPageController";

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.PageDTO;
@@ -27,7 +29,7 @@ public class MainController {
 	private StoreService service;
 	
 	@RequestMapping(value = {"/", "LikeatMainController"})
-	public ModelAndView likeatMain () {
+	public ModelAndView likeatMain (HttpSession sess, SessionStatus status) {
 		ModelAndView mav = new ModelAndView();
 		
 		String curPage = "1";
@@ -59,6 +61,11 @@ public class MainController {
 			mav.addObject("link", "LikeatMainController");
 		}
 		mav.setViewName(target);
+		
+		
+		System.out.println("과연 로그인 정보가 세션에 있을것인가 ==> " + sess.getAttribute("loginfo"));
+		
+		
 		return mav;
 	}//likeatMain()
 
