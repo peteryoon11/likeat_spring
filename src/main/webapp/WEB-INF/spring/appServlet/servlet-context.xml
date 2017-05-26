@@ -24,10 +24,16 @@
 			<mvc:mapping path="/LogoutController"/>
 			<bean class="com.interceptor.MemberInterceptor" id="memberInterceptor"/>
 		</mvc:interceptor>
-<!-- 			<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" id="webContentInterceptor">
+<!-- 		
+			<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" id="webContentInterceptor">
  				<property name="cacheControl" value="no-store"/>
 			</bean>
  -->
- 		</mvc:interceptors>
+	</mvc:interceptors>
+ 		
+ 		
+	<mvc:resources location="/WEB-INF/views/detail/" mapping="/detail/**"/> 		
+ 		
+ 		
 		
 </beans>

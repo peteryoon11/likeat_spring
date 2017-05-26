@@ -9,4 +9,4 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-찜한식당
+[내가 찜한 식당]은 준비중 :-)

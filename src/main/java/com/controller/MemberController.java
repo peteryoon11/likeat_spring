@@ -153,24 +153,9 @@ public class MemberController{
 	
 	
 	@RequestMapping("MyPageController")
-	public ModelAndView myPage (@ModelAttribute("loginfo") MemberDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public String myPage (@ModelAttribute("loginfo") MemberDTO dto) {
 		
-//		HttpSession session = request.getSession();
-//		MemberDTO dto = (MemberDTO) session.getAttribute("loginfo");
-		System.out.println("넘어온 데이터 : " + dto);
-		
-		String target = "";
-		if(dto != null) {
-			target = "mypage";
-		} else {
-			target = "redirect:LoginFormController";
-//			request.setAttribute("loginFail", "loginFail");
-//			request.setAttribute("loginFail", "로그인 후 이용해주세요 :-)");
-			mav.addObject("loginFail", "로그인 후 이용해주세요 :-)");
-		}
-		mav.setViewName(target);
-		return mav;
+		return "mypage";
 	}// myPage()
 	
 	

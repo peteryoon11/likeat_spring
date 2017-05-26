@@ -21,8 +21,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		HttpSession sess = request.getSession();
 		MemberDTO dto = (MemberDTO)sess.getAttribute("loginfo");
 		
-		System.out.println("인터셉터 dto ==> " + dto);
-		
 		if(dto != null && dto.getUserid() != null) {
 			return true;
 		} else {

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
  
 <!-- Website Font style -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
@@ -25,13 +25,15 @@
 $(document).ready(function() {
 	
 	$(".notyet").on("click", function(event) {
-		event.preventDefault();
+//		event.preventDefault();
 		alert('아직 준비중입니다 :-)');
 	});
 	
-	
 	$(".tabMenu").on("click", function () {
 		var originId = $(this).attr("id");
+		
+		console.log('originId ==> ' + originId);
+		
 	     $(".tabMenu").each(function () {
 	    	 var checkID = $(this).attr("id");
 	    	 var contentPath = 'member/' + originId + '.jsp'; 
@@ -40,8 +42,7 @@ $(document).ready(function() {
 	         } else {
  	        	$(this).closest("li").attr("class", "active");
  				console.log('contentPath ===> ' + contentPath);
-	        	
-						console.log('!!!!!!!!!!!!!!!!!!!!!!!' + '${loginfo}');
+				console.log('!!!!!!!!!!!!!!!!!!!!!!!' + '${loginfo}');
 	        	
 	        	$.ajax({
                     type : 'post',  
@@ -72,14 +73,19 @@ $(document).ready(function() {
 </script>
 <body>
 
-
 <div class="container">
 	<h3 style="color: orange; font-style: italic; font-weight: bold;">MyPage</h3>
 	<br/>
 	<ul class="nav nav-tabs" style="border-color: brown	;">
-		<li class="active"><a href="#" class="notyet tabMenu" id="menu1">내가 찜한 식당</a></li>
-		<li><a href="#" class="notyet tabMenu" id="menu2">내가 단 댓글</a></li>
-		<li><a href="#" class="tabMenu" id="menu3">내 정보수정하기</a></li>
+		<li class="active">
+			<a href="#" class="notyet tabMenu" id="menu1">내가 찜한 식당</a>
+		</li>
+		<li>
+			<a href="#" class="notyet tabMenu" id="menu2">내가 단 댓글</a>
+		</li>
+		<li>
+			<a href="#" class="tabMenu" id="menu3">내 정보수정하기</a>
+		</li>
 	</ul>
 	<br/>
 	<div id="mypageContent">

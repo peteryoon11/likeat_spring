@@ -15,4 +15,4 @@
 	System.out.println("userid ===> " + userid);
 %>
 
-댓글
+[내가 단 댓글]은 준비중 :-)
