@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.SreplyDTO;
@@ -22,32 +24,22 @@ public class DetailController {
 	@Autowired
 	private SreplyService rservice;
 	
-	
-	@RequestMapping("DetailPageController")
-	public ModelAndView detailPage(String sDTO) {
+	@RequestMapping("/DetailPageController")
+	public String detailPage(@RequestParam String sid, Model m) {
 		
-		ModelAndView mav = new ModelAndView();
-		
-//		String sDTO = request.getParameter("sid");
-		
-		System.out.println(sDTO);
-
-
-		StoreDTO sdto = service.selectOne(sDTO);
+		StoreDTO sDTO = service.selectOne(sid);
 		// List<StoreDTO> slist= service.selectAll();
-		List<SreplyDTO> rlist = rservice.selectSID(sDTO);
-		// rlist.remove(o)
-		int recount = rservice.countReview(sDTO);
+		List<SreplyDTO> rList = rservice.selectSID(sid);
+		// rList.remove(o)
+		int recount = rservice.countReview(sid);
 		int recountLow = 0;
 		int recountMiddle = 0;
 		int recountHigh = 0;
 
 		// int relowcount=rservice.
-		for (SreplyDTO sreplyDTO : rlist) {
-			System.out.println(sreplyDTO);
+		for (SreplyDTO sreplyDTO : rList) {
 			if (sreplyDTO.getRappr().equals("1")) {
 				recountLow++;
-
 			} else if (sreplyDTO.getRappr().equals("3")) {
 				recountMiddle++;
 			} else if (sreplyDTO.getRappr().equals("5")) {
@@ -55,15 +47,16 @@ public class DetailController {
 			}
 
 		}
-		String searchadd = sdto.getAddr2().substring(4, 7).trim();
+		
+		String searchadd = sDTO.getAddr2().substring(4, 7).trim();
 		System.out.println(searchadd);
 		System.out.println(searchadd.length());
 		List<StoreDTO> sNealist = service.searchNeaSto(searchadd);
 		// 주위 가게 정보
 		// rservice
-		System.out.println(sdto.getSname() + " 현재 들어온 가게 정보 ");
+		System.out.println(sDTO.getSname() + " 현재 들어온 가게 정보 ");
 
-		boolean tt = sNealist.remove(sdto);
+		boolean tt = sNealist.remove(sDTO);
 
 		System.out.println("본인 정보 지워짐? " + tt);
 
@@ -73,7 +66,7 @@ public class DetailController {
 
 		for (StoreDTO storeDTO : sNealist) {
 			System.out.println(storeDTO);
-			if (storeDTO.getSid().equals(sdto.getSid())) {
+			if (storeDTO.getSid().equals(sDTO.getSid())) {
 				temp = i;
 			}
 			System.out.println(i++);
@@ -85,23 +78,15 @@ public class DetailController {
 		countcarr.put("recountMiddle", recountMiddle);
 		countcarr.put("recountHigh", recountHigh);
 
-//		request.setAttribute("storeOne", sdto);
-//		request.setAttribute("sNealist", sNealist);
-//		request.setAttribute("sreplylist", rlist);
-//		request.setAttribute("recount", recount);
-//		request.setAttribute("countcarr", countcarr);
-		
-		mav.addObject("storeOne", sdto);
-		mav.addObject("sNealist", sNealist);
-		mav.addObject("sreplylist", rlist);
-		mav.addObject("recount", recount);
-		mav.addObject("countcarr", countcarr);
+		m.addAttribute("storeOne", sDTO);
+		m.addAttribute("sNealist", sNealist);
+		m.addAttribute("sreplylist", rList);
+		m.addAttribute("recount", recount);
+		m.addAttribute("countcarr", countcarr);
 
 		// 주변 맛집 검색하기 위해서 sid 로 불러온 객체의 addr2 의 앞 2개만 잘라서 wild card로 검색 후에
-		
-		mav.setViewName("detail");
-		
-		return mav;
+	
+		return "detail";
 	}//detailPage()
 	
 	

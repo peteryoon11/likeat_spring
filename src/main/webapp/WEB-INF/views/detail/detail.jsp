@@ -5,10 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.entity.*"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,10 +26,6 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=9Ipf6VeypcKkUVxMSP9n&submodules=geocoder"></script>
 
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>LikeEat Detail Page Proto</title>
 <style type="text/css">
 .glyphicon-eye-open, .glyphicon-pencil, .glyphicon-star {
 	font-size: 20px;
@@ -50,7 +42,6 @@
 }
 </style>
 
-
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -63,18 +54,12 @@ $(document).ready(function() {
 	MemberDTO mdto=(MemberDTO)session.getAttribute("loginfo");
 	System.out.println(mdto);
 	String tempid=null;
-	if(mdto==null)
-	{
+	if(mdto==null){
 		System.out.println("mdto 가 널?");
-			
-	}
-	else
-	{
+	} else {
 		System.out.println("mdto 가 널 아니네");
-		
-	tempid = mdto.getUserid();
-	System.out.println(tempid+"  >>");
-	
+		tempid = mdto.getUserid();
+		System.out.println(tempid+"  >>");
 	}
 	%>
 	var temp = '<%= tempid %>';

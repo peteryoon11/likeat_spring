@@ -12,6 +12,5 @@
 <body>
 	<jsp:include page="includeTop/topNav.jsp" />
 	<jsp:include page="detail/detail.jsp" />
-
 </body>
 </html>
