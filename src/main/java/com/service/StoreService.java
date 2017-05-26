@@ -36,8 +36,6 @@ public class StoreService {
 		} catch(Exception e) {	
 			e.printStackTrace();
 			throw new LikeatException("현재 페이지 목록 불러오기 실패!!!!!");
-		} finally {
-//			session.close();
 		}
 		return pageDTO;
 	}//selectAll
@@ -48,14 +46,10 @@ public class StoreService {
 		List<StoreDTO> list = null;
 		
 		try{
-//			list = session.selectList(namespace + "selectTop", mapperParam);
 			list = dao.selectTop(mapperParam);
-			System.out.println("StoreService =========> " + list);
 		} catch(Exception e) {	
 			e.printStackTrace();
 			throw new LikeatException("TOP 목록 불러오기 실패!!!!!");
-		} finally {
-//			session.close();
 		}
 		return list;
 	}//selectTop
@@ -65,28 +59,17 @@ public class StoreService {
 		List<StoreDTO> list = null;
 		
 		try{
-//			list = session.selectList(namespace + "selectNew", mapperParam);
 			list = dao.selectNew(mapperParam);
 		} catch(Exception e) {	
 			e.printStackTrace();
 			throw new LikeatException("NEW 목록 불러오기 실패!!!!!");
-		} finally {
-//			session.close();
 		}
 		return list;
 	}//selectTop
 
 
 	public StoreDTO selectOne(String sid) {
-
-		StoreDTO dto=null;
-		try {
-//			dto = session.selectOne(namespace + "selectOne",sid);
-			dto = dao.selectOne(sid);
-		} finally {
-//			session.close();
-		}
-		return dto;
+		return dao.selectOne(sid);
 	}// selectOne
 
 
@@ -95,13 +78,10 @@ public class StoreService {
 		List<StoreDTO> list = null;
 		
 		try{
-//			list = session.selectList(namespace + "searchKeyword", searchKeyword);
 			list = dao.searchKeyword(searchKeyword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LikeatException("찾기 목록 불러오기 실패!!!!!");
-		} finally {
-//			session.close();
 		}
 		return list;
 	}
@@ -112,13 +92,10 @@ public class StoreService {
 		List<StoreDTO> list = null;
 		
 		try{
-//			list = session.selectList(namespace + "searchCategory", searchKeyword);
 			list = dao.searchCategory(searchKeyword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LikeatException("찾기 목록 불러오기 실패!!!!!");
-		} finally {
-//			session.close();
 		}
 		return list;
 	}
@@ -127,13 +104,10 @@ public class StoreService {
 	public int totRecord(HashMap<String, String> mapperParam) throws LikeatException {
 		int cnt = 0;
 		try{
-//			cnt = session.selectOne(namespace + "totRecord", mapperParam);
 			cnt = dao.totRecord(mapperParam);	
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LikeatException("식당 토탈 레코드 갯수 가져오기 실패!!!!!!!");
-		}finally {
-//			session.close();
 		}
 		return cnt;
 	}//totRecord
@@ -142,13 +116,10 @@ public class StoreService {
 	public int searchCnt(String searchKeyword) throws LikeatException {
 		int cnt = 0;
 		try{
-//			cnt = session.selectOne(namespace + "searchCnt", searchKeyword);
 			cnt = dao.searchCnt(searchKeyword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LikeatException("찾기목록 토탈 레코드 가져오기 실패!!!!!!!");
-		}finally {
-//			session.close();
 		}
 		return cnt;
 	}

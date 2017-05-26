@@ -14,9 +14,9 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("## request ==>" + request);
-		System.out.println("## response ==>" + response);
-		System.out.println("## handler ==>" + handler); 
+//		System.out.println("## request ==>" + request);
+//		System.out.println("## response ==>" + response);
+//		System.out.println("## handler ==>" + handler); 
 		
 		HttpSession sess = request.getSession();
 		MemberDTO dto = (MemberDTO)sess.getAttribute("loginfo");
@@ -35,10 +35,10 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		System.out.println("## request ==>" + request);
-		System.out.println("## response ==>" + response);
-		System.out.println("## handler ==>" + handler);
-		System.out.println("## modelAndView ==>" + modelAndView);
+//		System.out.println("## request ==>" + request);
+//		System.out.println("## response ==>" + response);
+//		System.out.println("## handler ==>" + handler);
+//		System.out.println("## modelAndView ==>" + modelAndView);
 	}//postHandle()
 	
 }

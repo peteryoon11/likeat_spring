@@ -41,30 +41,6 @@
 			alert('아직 준비중입니다 :-)');
 		});
 		
-/*	
-		$("#MyPage").on("click", function(event) {
-			event.preventDefault;
-			
- 			if() {
-// 로그인이 안되어있을 시, 로그인하고 오라는경고창 띄워야함				
-			}
- 		});
-*/		
-
- 		$("#logoutBtn").on("click", function() {
-			var userid = ${loginfo.userid};
-//			$(this).attr("href", "LogoutController/"+userid);
-			alert(userid);
-			var $form = $('<form></form>'); 
-			$form.attr('action', 'LogoutController'); 
-			$form.attr('method', 'post'); 
-			$form.appendTo('body'); 
-			var idx = $('<input name="userid" type="hidden" value="' + userid + '">'); 
-			$form.append(idx); 
-			$form.submit();
-		}); 
-
-
 	});
 </script>
 <body>

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 import com.entity.MemberDTO;
 import com.exception.LikeatException;
@@ -83,13 +82,12 @@ public class MemberController{
 	
 	@RequestMapping("LoginFormController")
 	public String loginForm (Model m) {
-		System.out.println("loginForm의 model ==> " + m);
 		return "login";
 	}//loginForm
 	
+
 	
-	
-/*	@RequestMapping("LoginController")
+	@RequestMapping("LoginController")
 	public String login (MemberDTO dto, Model m, RedirectAttributes reAttr) {
 		String target = "";
 		HashMap<String, String> loginfo = new HashMap<>();
@@ -113,56 +111,19 @@ public class MemberController{
 			reAttr.addFlashAttribute("linkMsg", "로그인 재시도!");
 			reAttr.addFlashAttribute("link", "LoginFormController");
 		}
+		System.out.println("login() return 직전의 model ==> " + m);
 		return target;
-	}*/ // login()
-	@RequestMapping("LoginController")
-	public String login (@ModelAttribute("loginfo")MemberDTO dto, RedirectAttributes reAttr) {
-		String target = "";
-		HashMap<String, String> loginfo = new HashMap<>();
-		loginfo.put("userid", dto.getUserid());
-		loginfo.put("userpw", dto.getUserpw());
-		
-		try {
-			dto = service.login(loginfo);
-			if(dto != null) {
-				reAttr.addFlashAttribute("SuccessAlert", dto.getUsername() + "님 어서오세요");
-				target = "redirect:LikeatMainController";
-			} else {
-				reAttr.addFlashAttribute("loginFail", "아이디나 비밀번호를 다시 확인해주세요");
-				target = "redirect:LoginFormController";
-			}
-		} catch (LikeatException e) {
-			e.printStackTrace();
-			target = "error";
-			reAttr.addFlashAttribute("errorMsg", "로그인 중 문제가 발생했어요 :-( ");
-			reAttr.addFlashAttribute("linkMsg", "로그인 재시도!");
-			reAttr.addFlashAttribute("link", "LoginFormController");
-		}
-		return target;
-	}
+	} // login()
+	
+	
 	
 	
 	@RequestMapping("LogoutController")
-	public ModelAndView logout (String userId, Model m, SessionStatus status) {
-
-		ModelAndView mav = new ModelAndView();
-		
-		String target = "";
-		System.out.println("userId ==> " + userId);
-		MemberDTO dto = service.userCheck(userId);
-		System.out.println("넘어온 dto ==> " + dto);
-		if(dto != null) {
-			mav.addObject("SuccessAlert", dto.getUsername() + "님 다시 만나요 :-)");
-//			target = "redirect:LikeatMainController";
-			target = "redirect:LikeatMainController";
-			status.setComplete();
-		} else {
-			mav.addObject("loginFail", "로그인부터 시도해주세요 :-)");
-			target = "redirect:LoginFormController";
-		}
-		mav.setViewName(target);
-		return mav;
-	}// logout()
+	public String logout(SessionStatus status, Model m, RedirectAttributes reAttr) {
+		status.setComplete();
+		reAttr.addFlashAttribute("SuccessAlert", "로그아웃 되었습니다");
+		return "redirect:LikeatMainController";
+	}//logout
 	
 	
 	

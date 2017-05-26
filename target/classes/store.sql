@@ -233,10 +233,10 @@ Insert into store
 values (
 (select concat('s', lpad((max(to_number(ltrim(substr(sid, 2),0))) + 1), 4, 0)) from store),
 '바다식당' , '1130', '2200', '000', '000', '서울특별시', '용산구 한남동 743-7', '한식', '02', '790', '8202', '탕, 찌개, 전골', '15000', 'y', 23, 7,
-'https://mp-seoul-image-production-s3.mangoplate.com/12352/569295_1466426586514_35630',
-'https://mp-seoul-image-production-s3.mangoplate.com/12352/569295_1466426586514_35631',
-'https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/437019_1465717590699443.jpg',
-'https://mp-seoul-image-production-s3.mangoplate.com/12352_1440318295476'
+'https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/427001_1446618871833.jpg',
+'https://mp-seoul-image-production-s3.mangoplate.com/63/reviews/5effd7138a11.jpg',
+'https://mp-seoul-image-production-s3.mangoplate.com/63/458314_1466220837472_7469',
+'https://mp-seoul-image-production-s3.mangoplate.com/63/136334_1483229966409_136334_1483229927403_136334_1483229592492_203232'
 );
 
 
@@ -306,10 +306,11 @@ values (
 values (
 (select concat('s', lpad((max(to_number(ltrim(substr(sid, 2),0))) + 1), 4, 0)) from store),
 '피쉬스토리' , '1100', '2359', '000', '000', '서울특별시', '강남구 신사동 661-18', '양식', '02', '544', '9357', '회,스시', '15000', 'y', 10, 3,
-'https://mp-seoul-image-production-s3.mangoplate.com/242/reviews/02963987f779.jpg',
-'https://mp-seoul-image-production-s3.mangoplate.com/242/593273_1489856045247_40281',
-'https://mp-seoul-image-production-s3.mangoplate.com/49377/218307_1483187720695_130352',
-'https://mp-seoul-image-production-s3.mangoplate.com/49377/90579_1474713606863_459110');
+'https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/659538_1491970998621419.jpg',
+'https://mp-seoul-image-production-s3.mangoplate.com/49377/reviews/21190f9ddca9.jpg',
+'https://mp-seoul-image-production-s3.mangoplate.com/added_restaurants/184_1449974535665.jpg',
+'https://mp-seoul-image-production-s3.mangoplate.com/49377_1443673049970'
+);
 
 
 

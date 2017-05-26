@@ -23,7 +23,6 @@ public class StoreDAO {
 	}
 	
 	public List<StoreDTO> selectTop(HashMap<String, String> mapperParam) {
-		System.out.println("StoreDAO =============> ");
 		return template.selectList(namespace + "selectTop", mapperParam);
 	}
 	

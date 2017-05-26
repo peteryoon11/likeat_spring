@@ -61,11 +61,6 @@ public class MainController {
 			mav.addObject("link", "LikeatMainController");
 		}
 		mav.setViewName(target);
-		
-		
-		System.out.println("과연 로그인 정보가 세션에 있을것인가 ==> " + sess.getAttribute("loginfo"));
-		
-		
 		return mav;
 	}//likeatMain()
 
