@@ -21,7 +21,11 @@
      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
  <![endif]-->
 <style type="text/css">
-
+#imgMain {
+ 	margin: 3px !important;
+	padding:3px !important;
+}
+ 
 .thumbnail-wrap {
   width: 100%;
 }
@@ -144,8 +148,8 @@
 									<c:choose>
 				                		<c:when test='${0 eq s.ratingCnt}'>
 											addInnerPage += '<div class="col-lg-3 col-sm-6">'
-															+	'<a href=' + s.imgSrc1 + ' class="portfolio-box">'
-		        					        				+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
+															+	'<a href="DetailPageController?sid='+s.sid+ '" class="portfolio-box">'
+    					        							+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
 		        					        				+		'<div class="portfolio-box-caption">'
 		        					            			+			'<div class="portfolio-box-caption-content">'
 		        					                		+				'<div class="project-name">'
@@ -161,8 +165,8 @@
 										</c:when>
 									<c:otherwise>
 			                                addInnerPage += '<div class="col-lg-3 col-sm-6">'
-				        					   				+	'<a href=' + s.imgSrc1 + ' class="portfolio-box">'
-				        					        		+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" >'
+	        					 			  				+	'<a href="DetailPageController?sid='+s.sid+ '" class="portfolio-box">'
+	        					        					+		'<img src=' + s.imgSrc1 + ' class="img-responsive" alt="" id="imgMain" style="height:200px !important;width: 290px !important;">'
 				        					        		+		'<div class="portfolio-box-caption">'
 				        					            	+			'<div class="portfolio-box-caption-content">'
 				        					                +				'<div class="project-name">'
@@ -320,27 +324,34 @@
         <div class="container">
             <div class="row popup-gallery">
 				<c:forEach items="${pageDTO.list}" var="s" varStatus="i">
-					<div class="col-lg-3 col-sm-6">
-					    <a href="${s.imgSrc1}" class="portfolio-box">
-					        <img src="${s.imgSrc1}" class="img-responsive" alt="" >
-					        <div class="portfolio-box-caption">
-					            <div class="portfolio-box-caption-content">
-					                <div class="project-name">
-					                    ${s.sname}
-					                </div>
-					                <div class="project-category text-faded">
-					                    ${s.sid}
-					                    <input type="hidden" id="curPage" name="curPage"  value="${pageDTO.curPage}">
-					                </div>
-					            </div>
-					        </div>
-					    </a>
-					</div>
+	                <div class="col-lg-3 col-sm-6" >
+	                    <a href="DetailPageController?sid=${s.sid}" class="portfolio-box">
+	                        <img src="${s.imgSrc1}" class="img-responsive" alt="" id="imgMain" style="height:200px !important;width: 290px !important;">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                            	<div class="project-name">
+	                                    ${s.sname}
+	                                    <input type="hidden" id="curPage" name="curPage"  value="${pageDTO.curPage}">
+	                                </div>
+	                                <div class="project-category text-faded">
+	                                  	<c:choose>
+											<c:when test="${0 eq s.ratingCnt}">
+												"아직 별점이 없습니다"							
+											</c:when>
+											<c:otherwise>
+								 			<c:set value="${s.rating / s.ratingCnt}" var="rate"/>
+							 					<fmt:formatNumber value="${rate }" pattern=".0"/>
+											</c:otherwise>
+										</c:choose>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
             	</c:forEach>
             </div>
         </div>
     </section>
-  <div id="inputData"></div>
     <br/>
 
 

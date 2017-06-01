@@ -481,7 +481,6 @@ background: #428bca;
 											</c:otherwise>
 										</c:choose>
 	                                </div>
-
 	                            </div>
 	                        </div>
 	                    </a>

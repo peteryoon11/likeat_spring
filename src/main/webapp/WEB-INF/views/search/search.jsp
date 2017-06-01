@@ -86,7 +86,7 @@
 			                <p>
 								${storeDTO.menu }			                
 			                </p>
-			                <a class="btn btn-primary btn-search-detail" href="#">자세히 보러가기<span class="glyphicon glyphicon-chevron-right"></span></a>
+			                <a class="btn btn-primary btn-search-detail" href="DetailPageController?sid=${storeDTO.sid}">자세히 보러가기<span class="glyphicon glyphicon-chevron-right"></span></a>
 			            </div>
 			        </div>
 			        <!-- /.row -->
@@ -95,27 +95,6 @@
 			
 				</c:forEach>	
 			</div>
-			<!-- Pagination -->
-<!-- 			<div class="row text-center">
-			    <div class="col-lg-12">
-			        <ul class="pagination">
-			            <li>
-			                <a href="#">&laquo;</a>
-			            </li>
-			            <li class="active">
-			                <a href="#">1</a>
-			            </li>
-			            <li>
-			                <a href="#">2</a>
-			            </li>
-			            <li>
-			                <a href="#">&raquo;</a>
-			            </li>
-			        </ul>
-			    </div>
-			</div> -->
-			 <!-- /.row -->
-		<!-- Footer -->
 			<footer class="container-fluid text-center">
 				<a href="#mainPage" title="맨 위로">
 					<span class="glyphicon glyphicon-chevron-up" style="color: orange;"></span>
@@ -125,11 +104,4 @@
 			</footer>
 		</c:otherwise>
 	</c:choose>
-	
-<!-- jQuery -->
-<!-- 
- 	<script src="startbootstrap-4-col-portfolio-gh-pages/js/jquery.js"></script>
-	Bootstrap Core JavaScript
-	<script src="startbootstrap-4-col-portfolio-gh-pages/js/bootstrap.min.js"></script>
- -->
 </body>
