@@ -11,8 +11,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-	String userid = request.getParameter("userid");
-	System.out.println("userid ===> " + userid);
+//	String userid = request.getParameter("userid");
+//	System.out.println("userid ===> " + userid);
 %>
 
 [내가 단 댓글]은 준비중 :-)

@@ -24,6 +24,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	console.log('현재 아이디 => ' + '${loginfo.userid}');
+	
 	$(".notyet").on("click", function(event) {
 //		event.preventDefault();
 		alert('아직 준비중입니다 :-)');
@@ -42,7 +44,6 @@ $(document).ready(function() {
 	         } else {
  	        	$(this).closest("li").attr("class", "active");
  				console.log('contentPath ===> ' + contentPath);
-				console.log('!!!!!!!!!!!!!!!!!!!!!!!' + '${loginfo}');
 	        	
 	        	$.ajax({
                     type : 'post',  
@@ -89,7 +90,8 @@ $(document).ready(function() {
 	</ul>
 	<br/>
 	<div id="mypageContent">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<jsp:include page="menu1.jsp" />
+<%-- 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<jsp:include page="menu1.jsp" /> --%>
+		<jsp:include page="menu3.jsp" />
 	</div>
 </div>
 
