@@ -105,6 +105,20 @@
 						</a>
 					</li>
 				</c:when>
+				<c:when test="${loginfo.username eq '관리자'}">
+					<li>
+						<a href="AddStoreForm" id="MyPage">
+							<span class="glyphicon glyphicon-cog"></span> 
+							add STORE
+						</a>
+					</li>
+					<li>
+						<a href="LogoutController" id="logoutBtn">
+							<span class="glyphicon glyphicon-log-out"></span>
+							LOGOUT 
+						</a>
+ 					</li>
+				</c:when>
 				<c:otherwise>
 					<li>
 						<a href="MyPageController" id="MyPage">
