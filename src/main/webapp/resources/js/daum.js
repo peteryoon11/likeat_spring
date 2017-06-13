@@ -34,7 +34,7 @@ function openDaumPostcode() {
             document.getElementById("post1").value = data.postcode1;
             document.getElementById("post2").value = data.postcode2;
             document.getElementById("addr1").value = fullRoadAddr;
-            document.getElementById("addr2").value = data.jibunAddress;
+            document.getElementById("addr2").value = (fullRoadAddr.split(" "))[0];
  
             document.getElementById('addr2').focus();
         }

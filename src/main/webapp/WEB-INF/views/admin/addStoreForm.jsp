@@ -31,12 +31,25 @@ Website CSS style
 	color: red;
 	font-size: 12px;
 }
+
+label.scategory, label.parking {
+	font-weight: lighter;
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 
+/* 	function resetCheck(t, e) {
+	    e.preventDefault();
+	    if(!confirm("입력 정보를 삭제하시겠습니까?")) {
+	        return;
+	    } else {
+	        return true;
+	    }
+	} */
 	
 	
 });//ready
@@ -54,35 +67,32 @@ $(document).ready(function() {
 				<form id="addForm" class="form-horizontal" method="post" action="AddStore">
 					<div class="form-group">
 					  <label class="col-md-5 control-label" for="sname">이름</label>  
-					  <div class="col-md-2">
+					  <div class="col-md-4">
 					  	<input id="sname" name="sname" type="text" class="form-control input-md">
 					  </div>
 					  <span class="formValidation" id="snameCheck"></span>
 					</div>
 					
+					<hr/>
+					
 					<div class="form-group">
-						<label class="col-md-5 control-label" for="hour">영업시간</label>  
+						<label class="col-md-5 control-label" for="shour1">영업시간</label>  
 						<div class="col-md-7">
 							<div class="form-inline">
-								<select name="hour11" id="hour11" class="form-control col-xs-1 hour">
+<%-- 								<select name="hour11" id="hour11" class="form-control col-xs-1 hour">
 									<c:forEach begin="01" end="24" var="hour11">
 										<option value="${hour11}">${hour11}</option>
 									</c:forEach>
-								</select>
-								 : 
-								<input id="hour12" name="hour12" type="text" class="form-control input-md hour" size="2" maxlength="2"/>
-								&nbsp;~&nbsp;
-								<select name="hour21" id="hour21" class="form-control col-xs-1 hour">
-									<c:forEach begin="01" end="24" var="hour21">
-										<option value="${hour21}">${hour21}</option>
-									</c:forEach>
-								</select>
-								: <input id="hour22" name="hour22" type="text" class="form-control input-md hour" size="2" maxlength="2"/>
+								</select> --%>
+								<input id="shour1"  name="shour1" type="text" class="form-control input-md hour" size="4" maxlength="4" placeholder="1030"/>
+								 ~ 
+								<input id="shour2" name="shour2" type="text" class="form-control input-md hour" size="4" maxlength="4" placeholder="2200"/>
 							</div>
 						<span class="formValidation" id="hourCheck"></span>
 						</div>
 					</div>
 
+					<hr/>
 					
 					<div class="form-group">
 					  <label class="col-md-5 control-label" for="sname">주소</label>  
@@ -104,8 +114,7 @@ $(document).ready(function() {
 						<input name="addr1" id="addr1" size="40" readonly="" placeholder="도로명주소">
 						<br>
 						<span style="line-height: 10%;"><br></span>
-						<input name="addr2" id="addr2" size="40" placeholder="지번주소">
-
+						<input name="addr2" id="addr2" size="40" placeholder="지번주소" >
 
 
 					  </div>
@@ -113,12 +122,114 @@ $(document).ready(function() {
 					</div>
 					
 					
+					<hr/>
+					
+					
+					<div class="form-group">
+					  <label class="col-md-5 control-label" for="sname">분류</label>  
+					  <div class="col-md-6">
+					  	<label class="control-label scategory" for="scategoryKor">한식</label> 
+					    <input id="scategoryKor" name="scategory" type="radio" value="한식"/> &nbsp;&nbsp;|&nbsp;&nbsp;
+					  	<label class="control-label scategory" for="scategoryFor">양식</label> 
+					    <input id="scategoryFor" name="scategory" type="radio" value="양식"/> &nbsp;&nbsp;|&nbsp;&nbsp;
+					  	<label class="control-label scategory" for="scategoryChi">중식</label> 
+					    <input id="scategoryChi" name="scategory" type="radio" value="중식"/> &nbsp;&nbsp;|&nbsp;&nbsp;
+					  	<label class="control-label scategory" for="scategoryJap">일식</label> 
+					    <input id="scategoryJap" name="scategory" type="radio" value="일식"/> &nbsp;&nbsp;|&nbsp;&nbsp;
+					  	<label class="control-label scategory" for="scategorySna">분식</label> 
+					    <input id="scategorySna" name="scategory" type="radio" value="분식"/>
+					  </div>
+					  <span class="formValidation" id="scategoryCheck"></span>
+					</div>
+					
+					<hr/>
+					
+					
+					<div class="form-group">
+						<label class="col-md-5 control-label" for="sphone1">전화번호</label>  
+						<div class="col-md-6">
+							<div class="form-inline">
+								<input id="sphone1" name="sphone1" type="text" class="form-control input-md phone" size="3" maxlength="3">
+								 &nbsp;-&nbsp;<input id="sphone2" name="sphone2" type="text" class="form-control input-md phone" size="8" maxlength="4">
+								-&nbsp;<input id="sphone3" name="sphone3" type="text" class="form-control input-md phone" size="8" maxlength="4">
+							</div>
+						<span class="formValidation" id="phoneCheck"></span>
+						</div>
+					</div>
+
+
+					<hr/>
+
+					<div class="form-group">
+					  <label class="col-md-5 control-label" for="menu">대표메뉴</label>  
+					  <div class="col-md-4">
+					  	<input id="menu" name="menu" type="text" class="form-control input-md" placeholder="햄버거, 피자, 된장찌개">
+					  </div>
+					  <span class="formValidation" id="menuCheck"></span>
+					</div>
+					
+					<hr/>
+
+
+					<div class="form-group">
+					  <label class="col-md-5 control-label" for="sprice">가격대</label>  
+					  <div class="col-md-4">
+					  	<input id="sprice" name="sprice" type="text" class="form-control input-md" placeholder="15000 (평균 가격대를 입력해주세요)">
+					  </div>
+					  <span class="formValidation" id="spriceCheck"></span>
+					</div>
+					
+					<hr/>
+
+
+
+					<div class="form-group">
+					  <label class="col-md-5 control-label" for="parking">주차여부</label>  
+					  <div class="col-md-6">
+					  	<label class="control-label parking" for="parkingY">가능</label> 
+					    <input id="parkingY" name="parking" type="radio" value="y"/> &nbsp;&nbsp;|&nbsp;&nbsp;
+					  	<label class="control-label parking" for="parkingN">불가능</label> 
+					    <input id="parkingN" name="parking" type="radio" value="n"/>
+					  </div>
+					  <span class="formValidation" id="scategoryCheck"></span>
+					</div>
+					
+					<hr/>
+					
+					
+					<div class="form-group">
+					  <label class="col-md-5 control-label" for="imgSrc1">이미지1</label>  
+					  <div class="col-md-4">
+					  	<input id="imgSrc1" name="imgSrc1" type="text" class="form-control input-md" placeholder="(필수) 이미지 url 입력">
+					  </div>
+					  <span class="formValidation" id="imgSrc1Check"></span>
+					  
+					  <label class="col-md-5 control-label" for="imgSrc2">이미지2</label>  
+					  <div class="col-md-4">
+					  	<input id="imgSrc2" name="imgSrc2" type="text" class="form-control input-md" placeholder="이미지 url 입력">
+					  </div>
+					  <span class="formValidation" id="imgSrc2Check"></span>
+					  
+					  <label class="col-md-5 control-label" for="imgSrc3">이미지3</label>  
+					  <div class="col-md-4">
+					  	<input id="imgSrc3" name="imgSrc3" type="text" class="form-control input-md" placeholder="이미지 url 입력">
+					  </div>
+					  <span class="formValidation" id="imgSrc3Check"></span>
+					  
+					  <label class="col-md-5 control-label" for="imgSrc4">이미지4</label>  
+					  <div class="col-md-4">
+					  	<input id="imgSrc4" name="imgSrc4" type="text" class="form-control input-md" placeholder="이미지 url 입력">
+					  </div>
+					  <span class="formValidation" id="imgSrc4Check"></span>
+					</div>
+
+					<br/>
 					
 					<!-- Button -->
 					<div class="form-group">
 					  <label class="col-md-5 control-label" for="submit"></label>
 					  <div class="col-md-4">
-					  	<input type="reset" id="clearForm" name="clearForm" class="btn btn-primary" style="background-color: orange; border: none;" value="다시 작성하기"/>
+					  	<input type="reset" id="clearForm" name="clearForm" class="btn btn-primary" style="background-color: orange; border: none;" value="다시 작성하기" onclick="resetCheck(this, event)"/>
 					    <input type="submit" id="submit" name="submit" class="btn btn-primary" style="background-color: white; border-color: orange; color: orange; font-weight: bold;" value="LIKEat NOW!"/>
 					  </div>
 					</div>
